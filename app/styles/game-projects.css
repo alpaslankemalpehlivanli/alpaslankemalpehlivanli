@@ -1,0 +1,422 @@
+/* ═══════════════════════════════════════════════════════════
+   GAME PROJECT PAGES (flipbook içi — book 1)
+   Sol sayfa: logo + info block
+   Sağ sayfa: asimetrik komik albüm grid
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── LEFT PAGE ─────────────────────────────────────────── */
+.gp-left {
+  --gp-color: #2563EB;
+  container-type: inline-size;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-paper);
+  overflow: hidden;
+}
+
+/* Logo area (top ~42%) */
+.gp-logo-wrap {
+  flex: 0 0 42%;
+  position: relative;
+  overflow: hidden;
+  background: #0d0c0a;
+  border-bottom: 3px solid var(--gp-color);
+}
+
+.gp-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.gp-logo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #111009 0%, #0a0908 100%);
+  overflow: hidden;
+}
+
+.gp-logo-ghost {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(28px, 14cqw, 72px);
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.04);
+  text-align: center;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.gp-logo-stripe {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--gp-color);
+}
+
+.gp-logo-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 40%;
+  background: linear-gradient(to top, rgba(10, 9, 8, 0.75) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.gp-logo-title-bar {
+  position: absolute;
+  bottom: 7px; left: 10px;
+  z-index: 2;
+}
+
+.gp-logo-num {
+  font-family: var(--font-mono), monospace;
+  font-size: clamp(8px, 2.2cqw, 12px);
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* Info block (bottom ~58%) */
+.gp-info {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px 10px 0 10px;
+  overflow: hidden;
+}
+
+.gp-title {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(18px, 7.5cqw, 36px);
+  letter-spacing: 0.06em;
+  color: var(--gp-color);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.gp-subtitle {
+  font-family: var(--font-mono), monospace;
+  font-size: clamp(9px, 2.7cqw, 12px);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  flex-shrink: 0;
+}
+
+.gp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.gp-tag {
+  font-family: var(--font-mono), monospace;
+  font-size: clamp(8px, 2.2cqw, 10px);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--color-border);
+  padding: 1px 5px;
+  line-height: 1.6;
+}
+
+.gp-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.gp-jam {
+  font-family: var(--font-mono), monospace;
+  font-size: clamp(8.5px, 2.4cqw, 11px);
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+  text-transform: uppercase;
+}
+
+.gp-rank {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(9px, 2.7cqw, 12px);
+  letter-spacing: 0.14em;
+  color: var(--gp-color);
+  border: 1px solid var(--gp-color);
+  padding: 0px 5px;
+  line-height: 1.5;
+}
+
+.gp-summary {
+  font-family: var(--font-sans), sans-serif;
+  font-size: clamp(9.5px, 2.7cqw, 12px);
+  color: var(--color-text);
+  line-height: 1.5;
+  flex-shrink: 0;
+}
+
+/* SAR (Situation / Action / Result) */
+.gp-sar {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.gp-sar-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  border-left: 2.5px solid var(--gp-color);
+  padding: 3px 7px;
+  background: rgba(255, 255, 255, 0.03);
+  overflow: hidden;
+}
+
+.gp-sar-label {
+  font-family: var(--font-mono), monospace;
+  font-size: clamp(7.5px, 2cqw, 9.5px);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--gp-color);
+  flex-shrink: 0;
+  min-width: 22px;
+  padding-top: 1px;
+}
+
+.gp-sar-text {
+  font-family: var(--font-mono), monospace;
+  font-size: clamp(8px, 2.2cqw, 10px);
+  color: var(--color-muted);
+  line-height: 1.45;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* Link buttons */
+.gp-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  flex-shrink: 0;
+  padding-bottom: 7px;
+}
+
+.gp-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 1.5px solid var(--gp-color);
+  padding: 2px 8px;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(7.5px, 2.0cqw, 9.5px);
+  letter-spacing: 0.18em;
+  color: var(--gp-color);
+  text-decoration: none;
+  transition: background 0.14s, color 0.14s;
+}
+
+.gp-link-btn:hover { background: var(--gp-color); color: #0d0c0a; }
+
+/* Footer */
+.gp-foot {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 10px 6px;
+  border-top: 1px solid var(--color-border);
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(6px, 1.6cqw, 8.5px);
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.gp-foot-dots {
+  letter-spacing: 0.3em;
+  color: var(--color-dim);
+  font-size: clamp(5px, 1.2cqw, 7px);
+}
+
+/* ─── RIGHT PAGE (full-screen album) ────────────────────── */
+/* Albüm sayfası kapsayıcı — grid detayları her album'da override edilir */
+.gp-right {
+  --gp-color: #2563EB;
+  container-type: inline-size;
+  position: absolute;
+  inset: 0;
+  display: grid;
+  gap: 3px;
+  padding: 3px;
+  background: #080706;
+  overflow: hidden;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ASİMETRİK KOMİK ALBÜM SİSTEMİ
+   Her oyunun sağ sayfası benzersiz grid-template-areas
+   düzeni + her hücre için clip-path köşeleri.
+   Karanlık arka plan (#080706) kırpılmış köşelerden
+   mürekkep oluğu olarak görünür.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── Base cell ─────────────────────────────────────────── */
+.gpx-cell {
+  position: relative;
+  overflow: hidden;
+  background: #0d0c0a;
+  cursor: pointer;
+  animation: gpx-in 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.gpx-cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.gpx-cell:hover img { transform: scale(1.05); }
+
+.gpx-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gpx-cell:hover .gpx-overlay { opacity: 1; }
+
+.gpx-watermark {
+  position: absolute;
+  bottom: 6px; left: 8px;
+  z-index: 3;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(8px, 3.5cqw, 16px);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.16);
+  pointer-events: none;
+  user-select: none;
+}
+
+.gpx-nest { display: grid; gap: 3px; }
+
+@keyframes gpx-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── TUTSAK (5 fotoğraf) ─── 16:9 yatay ───────────────
+   Hiçbir hücre birden fazla satır kapsamaz (dikey olmasın)
+   A  A  A   ← tam genişlik kahraman
+   B  B  C   ← geniş + dar
+   D  E  E   ← dar + geniş
+   ──────────────────────────────────────────────────────── */
+.gp-album-tutsak {
+  grid-template-columns: 1.1fr 1fr 0.9fr;
+  grid-template-rows: 1.8fr 1.4fr 1.4fr;
+  grid-template-areas:
+    "A A A"
+    "B B C"
+    "D E E";
+}
+
+.gpx-tk-a { grid-area: A; clip-path: polygon(0 0, 100% 0, 100% 88%, 55% 100%, 0 94%); }
+.gpx-tk-b { grid-area: B; clip-path: polygon(0 0, 100% 4%, 96% 100%, 0 97%); }
+.gpx-tk-c { grid-area: C; clip-path: polygon(4% 0, 100% 0, 100% 97%, 0 100%); }
+.gpx-tk-d { grid-area: D; clip-path: polygon(0 0, 95% 5%, 100% 95%, 0 100%); }
+.gpx-tk-e { grid-area: E; clip-path: polygon(5% 4%, 100% 0, 100% 100%, 0 100%); }
+
+/* ─── TRICK OR ADMIT (6 fotoğraf) ─── 16:9 yatay ────────
+   A  A  B   ← geniş + dar
+   C  D  D   ← dar + geniş  (ters)
+   E  E  F   ← geniş + dar  (tekrar ters)
+   ──────────────────────────────────────────────────────── */
+.gp-album-toa {
+  grid-template-columns: 1.3fr 1fr 0.9fr;
+  grid-template-rows: 1.6fr 1.6fr 1.6fr;
+  grid-template-areas:
+    "A A B"
+    "C D D"
+    "E E F";
+}
+
+.gpx-ta-a { grid-area: A; clip-path: polygon(0 0, 100% 4%, 96% 100%, 0 97%); }
+.gpx-ta-b { grid-area: B; clip-path: polygon(4% 0, 100% 0, 97% 96%, 0 100%); }
+.gpx-ta-c { grid-area: C; clip-path: polygon(0 0, 96% 5%, 100% 100%, 3% 95%); }
+.gpx-ta-d { grid-area: D; clip-path: polygon(5% 4%, 100% 0, 97% 100%, 0 100%); }
+.gpx-ta-e { grid-area: E; clip-path: polygon(0 0, 97% 5%, 100% 97%, 2% 100%); }
+.gpx-ta-f { grid-area: F; clip-path: polygon(4% 5%, 100% 0, 100% 100%, 0 100%); }
+
+/* ─── MAGTWIN (5 fotoğraf) ─── 16:9 yatay ───────────────
+   A  B  B   ← dar + geniş
+   C  C  D   ← geniş + dar
+   E  E  E   ← tam genişlik alt
+   ──────────────────────────────────────────────────────── */
+.gp-album-magtwins {
+  grid-template-columns: 0.9fr 1.2fr 1fr;
+  grid-template-rows: 1.5fr 1.5fr 1.8fr;
+  grid-template-areas:
+    "A B B"
+    "C C D"
+    "E E E";
+}
+
+.gpx-mg-a { grid-area: A; clip-path: polygon(0 0, 96% 4%, 100% 96%, 0 100%); }
+.gpx-mg-b { grid-area: B; clip-path: polygon(3% 0, 100% 0, 100% 93%, 48% 100%, 0 96%); }
+.gpx-mg-c { grid-area: C; clip-path: polygon(0 0, 100% 5%, 97% 100%, 0 96%); }
+.gpx-mg-d { grid-area: D; clip-path: polygon(5% 0, 100% 0, 100% 100%, 0 95%); }
+.gpx-mg-e { grid-area: E; clip-path: polygon(0 8%, 40% 0, 100% 5%, 100% 100%, 0 100%); }
+
+/* ─── ILUNIA (11 fotoğraf) ──────────────────────────────── */
+.gp-album-ilunia {
+  grid-template-columns: 1fr 1.4fr 0.8fr;
+  grid-template-rows: 1.5fr 1fr 1.3fr 1fr;
+  grid-template-areas:
+    "A B B"
+    "A C D"
+    "E N N"
+    "E N N";
+}
+
+.gpx-il-a { grid-area: A; clip-path: polygon(0 0, 95% 3%, 100% 97%, 0 100%); }
+.gpx-il-b { grid-area: B; clip-path: polygon(4% 0, 100% 0, 96% 100%, 0 91%); }
+.gpx-il-c { grid-area: C; clip-path: polygon(3% 0, 100% 5%, 97% 94%, 0 100%); }
+.gpx-il-d { grid-area: D; clip-path: polygon(0 5%, 100% 0, 100% 94%, 4% 100%); }
+.gpx-il-e { grid-area: E; clip-path: polygon(0 0, 100% 5%, 94% 100%, 0 100%); }
+
+/* Nested perception cluster (5–10. fotoğraflar, auto-placed) */
+.gpx-il-nest {
+  grid-area: N;
+  grid-template-columns: 1fr 0.8fr 1.2fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.gpx-il-na { clip-path: polygon(0 0, 100% 4%, 96% 100%, 0 100%); }
+.gpx-il-nb { clip-path: polygon(3% 0, 100% 0, 100% 96%, 0 100%); }
+.gpx-il-nc { clip-path: polygon(0 0, 97% 5%, 100% 100%, 4% 100%); }
+.gpx-il-nd { clip-path: polygon(0 4%, 100% 0, 97% 100%, 0 100%); }
+.gpx-il-ne { clip-path: polygon(5% 0, 100% 0, 100% 95%, 0 100%); }
+.gpx-il-nf { clip-path: polygon(0 0, 100% 3%, 95% 100%, 0 96%); }

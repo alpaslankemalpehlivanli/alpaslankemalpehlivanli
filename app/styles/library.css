@@ -1,0 +1,343 @@
+/* ─── Library ───────────────────────────────────────────── */
+.library {
+  /* Background: koyu sahne */
+  background-color: #040404;
+  background-image:
+    radial-gradient(ellipse at 50% 92%, rgba(235, 217, 185, 0.18) 0%, rgba(235, 217, 185, 0.06) 14%, transparent 36%),
+    linear-gradient(180deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.5) 28%, rgba(0,0,0,0.42) 58%, rgba(0,0,0,0.76) 100%),
+    url('/background.png');
+  background-position: center bottom, center center, center top;
+  background-repeat: no-repeat;
+  background-size: 100% 100%, 100% 100%, cover;
+  /* Layout */
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.6rem, 4vw, 2.8rem);
+  padding: clamp(1rem, 4vw, 2.4rem);
+  isolation: isolate;
+}
+
+.library > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Entry Gate ─────────────────────────────────────────── */
+.entry-gate {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.entry-gate-btn {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(100%, 52rem);
+  padding: 2rem;
+  background: transparent;
+  border: none;
+  color: #F0E2C0;
+  cursor: pointer;
+  pointer-events: auto;
+  outline: none;
+  min-height: max(55dvh, 22rem);
+}
+
+/* ── Name + role block ─────────────────────────────── */
+.entry-gate-identity {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  text-align: center;
+}
+
+.entry-gate-name {
+  display: block;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.8rem, 4.2vw, 3.25rem);
+  letter-spacing: 0.16em;
+  color: #F2E4C6;
+  line-height: 0.98;
+  white-space: nowrap;
+}
+
+.entry-gate-idrule {
+  display: block;
+  width: clamp(2rem, 6vw, 3.5rem);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #E8282B, transparent);
+  margin: 0.1rem auto;
+}
+
+.entry-gate-role {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: clamp(0.58rem, 1vw, 0.72rem);
+  letter-spacing: 0.45em;
+  color: #9A8060;
+  text-transform: uppercase;
+}
+
+/* ── Arrow + hint block ────────────────────────────── */
+.entry-gate-cta {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1.5rem, 5vh, 3rem);
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: max-content;
+  max-width: 100%;
+}
+
+.entry-gate-icon {
+  width: clamp(3rem, 9vw, 4rem);
+  height: clamp(3rem, 9vw, 4rem);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(240, 226, 192, 0.18);
+  border-radius: 999px;
+  background: rgba(240, 226, 192, 0.04);
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.entry-gate-btn:hover .entry-gate-icon {
+  border-color: rgba(232, 40, 43, 0.5);
+  background: rgba(232, 40, 43, 0.07);
+}
+
+.entry-gate-icon svg {
+  width: 44%;
+  height: 44%;
+  color: rgba(240, 226, 192, 0.7);
+  animation: arrow-descent 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  transition: color 0.25s ease;
+}
+
+.entry-gate-btn:hover .entry-gate-icon svg {
+  color: #E8282B;
+}
+
+@keyframes arrow-descent {
+  0%, 100% { transform: translateY(0);    opacity: 0.75; }
+  50%       { transform: translateY(30%); opacity: 0.35; }
+}
+
+.entry-gate-hint {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(0.85rem, 2.8vw, 1.1rem);
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: rgba(240, 226, 192, 0.4);
+  transition: color 0.25s ease;
+}
+
+.entry-gate-btn:hover .entry-gate-hint {
+  color: rgba(240, 226, 192, 0.75);
+}
+
+/* ─── Hero başlık ───────────────────────────────────────── */
+.library-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  text-align: center;
+  width: min(100%, 720px);
+  padding: clamp(0.95rem, 2.8vw, 1.35rem) clamp(1rem, 4vw, 1.8rem);
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.library-hero-name {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.8rem, 4.2vw, 3.25rem);
+  letter-spacing: 0.16em;
+  color: #F2E4C6;
+  line-height: 0.98;
+  white-space: nowrap;
+}
+
+.library-hero-rule {
+  width: min(100%, 28rem);
+  height: 2px;
+  background: #E8282B;
+  transform-origin: center center;
+}
+
+.library-hero-role {
+  font-family: var(--font-mono), monospace;
+  font-size: clamp(0.58rem, 1vw, 0.72rem);
+  letter-spacing: 0.45em;
+  color: #9A8060;
+  text-transform: uppercase;
+}
+
+.library-shelf {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(0.8rem, 2.6vw, 2rem);
+  width: min(100%, 980px);
+  padding-inline: clamp(0.2rem, 2vw, 1rem);
+}
+
+.library-shelf::after {
+  content: '';
+  flex-basis: 100%;
+  height: 2px;
+  margin-top: 0.35rem;
+  background: #1A1209;
+}
+
+/* ─── Book Cover (library card) ─────────────────────────── */
+.book-cover {
+  position: relative;
+  width: 230px;
+  height: 322px;
+  max-width: 100%;
+  overflow: hidden;
+  display: block;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.book-cover-spine {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: var(--book-spine-width, 22px);
+  background: linear-gradient(to right, #0a0908, #1f1d18);
+  border-right: 1px solid var(--color-border);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.book-cover .cover-face { left: var(--book-spine-width, 22px); }
+.book-cover:disabled { opacity: 0.88; }
+
+/* ─── Cover Face ────────────────────────────────────────── */
+.cover-face {
+  container-type: inline-size;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, #1c1a16 0%, #0e0d0b 100%);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 8% 10%;
+  transition: border-color 0.2s;
+}
+
+.cover-face::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--color-dim);
+  transition: background 0.2s;
+  z-index: 1;
+}
+
+.cover-face::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  pointer-events: none;
+}
+
+.cover-face-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  background: #0d0c0a;
+}
+
+.cover-face-ghost {
+  font-family: var(--font-display), sans-serif;
+  font-size: 30cqw;
+  line-height: 0.85;
+  color: rgba(255, 255, 255, 0.04);
+  letter-spacing: -0.02em;
+  position: absolute;
+  right: 6%; top: 6%;
+  pointer-events: none;
+}
+
+.cover-face-footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+
+.cover-face-title {
+  font-family: var(--font-display), sans-serif;
+  font-size: 8cqw;
+  letter-spacing: 0.2em;
+  color: var(--color-muted);
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+/* Hover — kitabın kendi aksanlık rengi (--book-accent) */
+.book-cover:hover .cover-face {
+  border-color: color-mix(in srgb, var(--book-accent, var(--color-accent)) 35%, transparent);
+}
+.book-cover:hover .cover-face::before { background: var(--book-accent, var(--color-accent)); }
+.book-cover:hover .cover-face-title   { color: var(--color-text); }
+
+/* ─── Book Item (card + label wrapper) ──────────────────── */
+.book-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  flex: 0 1 auto;
+}
+
+.book-item-label {
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  color: var(--color-text);
+  text-transform: uppercase;
+  transition: color 0.2s;
+  text-align: center;
+}
+
+.book-item:hover .book-item-label { color: var(--book-accent, var(--color-accent)); }
+
+@media (max-width: 640px) {
+  .entry-gate-name    { white-space: normal; font-size: clamp(1.4rem, 7vw, 1.9rem); }
+  .entry-gate-role    { letter-spacing: 0.28em; }
+  .entry-gate-hint    { letter-spacing: 0.18em; }
+  .library-hero       { gap: 0.5rem; }
+  .library-hero-name  { letter-spacing: 0.1em; white-space: normal; font-size: clamp(1.4rem, 7vw, 1.9rem); }
+  .library-hero-role  { letter-spacing: 0.26em; }
+  .book-item-label    { font-size: 0.68rem; letter-spacing: 0.14em; }
+}

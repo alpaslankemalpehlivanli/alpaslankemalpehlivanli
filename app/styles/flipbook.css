@@ -1,0 +1,234 @@
+/* ─── Turn.js Core ──────────────────────────────────────── */
+#book { position: relative; background: #0d0c0a; }
+
+#book .page {
+  background: var(--color-paper);
+  overflow: hidden;
+}
+
+#book .page::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  pointer-events: none;
+  z-index: 100;
+}
+
+#book .page.hard { background: #0d0c0a; }
+
+#book .gradient {
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,0.5) 100%
+  ) !important;
+}
+
+/* ─── Root Shell ────────────────────────────────────────── */
+.root-shell {
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  background: var(--color-bg);
+  overflow: hidden;
+}
+
+/* ─── Reading Stage Backgrounds ────────────────────────── */
+.reading-bg,
+.flipbook-root {
+  background-color: #040404;
+  background-image:
+    radial-gradient(ellipse at 50% 92%, rgba(235, 217, 185, 0.18) 0%, rgba(235, 217, 185, 0.06) 14%, transparent 36%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.5) 28%, rgba(0, 0, 0, 0.42) 58%, rgba(0, 0, 0, 0.76) 100%),
+    url('/background.png');
+  background-position: center bottom, center center, center top;
+  background-repeat: no-repeat;
+  background-size: 100% 100%, 100% 100%, cover;
+}
+
+/* ─── Flipbook Root ─────────────────────────────────────── */
+.flipbook-root {
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.flipbook-root::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0,0,0,0.4) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Book Wrap & Shadow ────────────────────────────────── */
+.book-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.book-stage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  transition: justify-content 0.35s ease;
+}
+
+.book-stage--start { justify-content: flex-end; }
+.book-stage--end   { justify-content: flex-start; }
+
+.book-viewport {
+  overflow: hidden;
+  transition: width 0.35s ease;
+}
+
+.book-canvas {
+  transition: transform 0.35s ease;
+}
+
+.book-stage--start .book-canvas {
+  transform: translateX(calc(-1 * var(--book-page-width)));
+}
+
+.book-stage--end .book-canvas {
+  transform: translateX(0);
+}
+
+.book-shadow {
+  height: 14px;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: 0 16px 56px 6px rgba(0, 0, 0, 0.7);
+  margin-top: -4px;
+  pointer-events: none;
+}
+
+/* ─── Progress Bar ──────────────────────────────────────── */
+.book-progress {
+  display: flex;
+  gap: 3px;
+  margin-top: 8px;
+}
+
+.progress-seg {
+  flex: 1;
+  height: 2px;
+  background: var(--color-dim);
+  transition: background 0.3s ease;
+}
+
+.progress-seg--on { background: var(--color-accent); }
+
+/* ─── Navigation Bar ────────────────────────────────────── */
+.flip-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.7rem;
+  padding: 0;
+}
+
+.flip-nav-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.flip-nav-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.flip-nav-center {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Back button */
+.flip-back-btn {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(0.76rem, 0.69rem + 0.24vw, 0.88rem);
+  letter-spacing: 0.22em;
+  color: var(--color-dim);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.15s, letter-spacing 0.2s;
+  padding: 0.34rem 0;
+  white-space: nowrap;
+}
+
+.flip-back-btn:hover {
+  color: var(--color-muted);
+  letter-spacing: 0.32em;
+}
+
+/* Arrow buttons */
+.flip-arrow-btn {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--color-dim);
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s, opacity 0.2s;
+  flex-shrink: 0;
+}
+
+.flip-arrow-btn:hover:not(:disabled) {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  background: rgba(232, 40, 43, 0.06);
+}
+
+.flip-arrow-btn:disabled { opacity: 0.1; cursor: default; }
+.flip-arrow-btn.is-turning { opacity: 0.3; }
+
+/* Page counter */
+.page-counter {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  color: var(--color-muted);
+  min-width: 4.5rem;
+  text-align: center;
+  user-select: none;
+}
+
+/* ─── Reading Stage ─────────────────────────────────────── */
+.reading-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}
+
+.reading-stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.reading-frame {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
